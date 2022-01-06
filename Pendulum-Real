@@ -1,0 +1,7 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Error-Cezar/Pendulum-Hub/main/Pendulum"))()
+
+local Pendulum = Library.CreateLib("Pendulum Hub")
+
+AddButton("Neptunian V", "An original. If you want the hat join the discord.", function()
+	loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Tescalus/Evolution-Hub/main/Neptunia.lua"))()
+end)
