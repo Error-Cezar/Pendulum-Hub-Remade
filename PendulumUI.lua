@@ -1,3 +1,6 @@
+-- I take no credits for all the Instance.new
+-- Each scripts come from it's owner none script is considered as "original" (yet)
+
 return {
 CreateGui = function(GuiName)
 	local Spy = Instance.new("ScreenGui")
