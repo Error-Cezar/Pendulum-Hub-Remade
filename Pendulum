@@ -1,5 +1,3 @@
--- Gui to Lua
--- Version: 3.2
 return {
 CreateGui = function(GuiName)
 	local Spy = Instance.new("ScreenGui")
@@ -519,13 +517,13 @@ CreateGui = function(GuiName)
 
 
 	function close()
-		for _,v in pairs(script.Parent.Parent.Parent.Parent.Parent:GetDescendants()) do
+		for _,v in pairs(Frame:GetDescendants()) do
 			if v:IsA("TextButton") then
 				print(v)
 				v.Active = false
 			end
 		end
-		script.Parent.Parent.Parent.Parent.Parent.Close.Visible = true
+		Close.Visible = true
 	end
 
 
@@ -605,6 +603,7 @@ CreateGui = function(GuiName)
 
 	Thing.Visible = true
 
+	local function PYVDT_fake_script() -- ScreenGui.Dragify 
 
 	local menus = {
 		["Home"] = 0,
@@ -622,20 +621,23 @@ CreateGui = function(GuiName)
 	local selected = Home
 	for i,v in pairs(header:GetChildren()) do
 		if v:IsA("TextButton") then
-			v.MouseEnter:Connect(function()
+				v.MouseEnter:Connect(function()
+					print("a")
 				if v ~= selected then
 					game:GetService("TweenService"):Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Quad,Enum.EasingDirection.In), {Position = UDim2.new(v.Position.X.Scale,0,0.25,0)}):Play()
 				end
 			end)
-			v.MouseLeave:Connect(function()
+				v.MouseLeave:Connect(function()
+					print("b")
 				if v ~= selected then
 					game:GetService("TweenService"):Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Quad,Enum.EasingDirection.In), {Position = UDim2.new(v.Position.X.Scale,0,0.141,0)}):Play()
 				end
 			end)
-			v.Activated:Connect(function()
+				v.Activated:Connect(function()
+					print("c")
 				selected = v
 				game:GetService("TweenService"):Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Quad,Enum.EasingDirection.In), {Position = UDim2.new(v.Position.X.Scale,0,0.3,0)}):Play()
-				for _,g in pairs(script.Parent:GetChildren()) do
+				for _,g in pairs(header:GetChildren()) do
 					if g ~= v and g:IsA("TextButton") then
 						game:GetService("TweenService"):Create(g, TweenInfo.new(0.2, Enum.EasingStyle.Quad,Enum.EasingDirection.In), {Position = UDim2.new(g.Position.X.Scale,0,0.141,0)}):Play()
 					end
@@ -646,7 +648,12 @@ CreateGui = function(GuiName)
 				print(v.Position, v)
 			end)
 		end
+		end
+		
+
 	end
+	coroutine.wrap(PYVDT_fake_script)()
+	
 	Button.Visible = false
 
 	TextBox.Changed:Connect(function()
@@ -777,5 +784,4 @@ CreateGui = function(GuiName)
 
 	end
 end
-
 }
