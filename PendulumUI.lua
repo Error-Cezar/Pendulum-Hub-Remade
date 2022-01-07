@@ -833,7 +833,7 @@ end
 			--button.Position = UDim2.new(0, 0, 0, last.Position.Y.Offset + 28)
 		end
 		--last = button
-		Scroller.CanvasSize = UDim2.fromOffset(Scroller.CanvasSize.X.Offset,Scroller.CanvasSize.Y.Offset+28)
+		Scroller.CanvasSize = UDim2.fromOffset(Scroller.CanvasSize.X.Offset,Scroller.CanvasSize.Y.Offset+33)
 		
 		button.MouseEnter:Connect(function()
 		color(button, Color3.fromRGB(53, 69, 121), 0.8)
