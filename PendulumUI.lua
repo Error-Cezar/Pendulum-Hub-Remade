@@ -855,7 +855,7 @@ end
 			if chara.Humanoid:GetAttribute("Hi") ~= true and not chara:FindFirstChild("UpperTorso") then
 				chara.Humanoid:SetAttribute("Hi", true)
 				func()
-				PlaySound("rbxassetid://5852311745")
+				PlaySound(5852311745)
 
 				-- for user finding.
 				--	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("UGVuZHVsdW0gVXNlciBGaW5kZXI= "..button.Text, "System")
@@ -865,12 +865,12 @@ end
 
 				if chara:FindFirstChild("UpperTorso") then
 					notify("Please convert to R6.")
-					PlaySound("rbxassetid://7930024055")
+					PlaySound(7930024055)
 
 				end
 				if chara.Humanoid:GetAttribute("Hi") == true then
 					notify("A script is already running !")
-					PlaySound("rbxassetid://7930024055")
+					PlaySound(7930024055)
 				end
 
 			end
