@@ -5,6 +5,9 @@ return {
 CreateGui = function(GuiName)
 local Spy = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
+Frame.Active = true
+Frame.Selectable = true
+Frame.Draggable = true
 local hellomario = Instance.new("UICorner")
 local header = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
