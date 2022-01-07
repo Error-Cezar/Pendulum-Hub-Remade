@@ -785,27 +785,37 @@ end
 		end
 		script.Parent.Parent.Visible = false
 	end)
+		n.MouseButton1Click:Connect(function()
+			for _,v in pairs(Frame:GetDescendants()) do
+				if v:IsA("TextButton") then
+					v.Active = true
+				end
+			end
+			script.Parent.Parent.Visible = false
+		end)
 
-	y.MouseButton1Click:Connect(function()
+		y.MouseButton1Click:Connect(function()
 		PlaySound(6224656636)
-		local Intro = Thing
-		local goal = {}
-		goal.BackgroundTransparency = 0
+		Close.Visible = false
+		Comments.Visible = false
+			local Intro = Thing
+			local goal = {}
+			goal.BackgroundTransparency = 0
 
-		local tweenInfo = TweenInfo.new(1.2)
+			local tweenInfo = TweenInfo.new(1.2)
 
-		local tween = TweenService:Create(Intro, tweenInfo, goal):Play()
+			local tween = TweenService:Create(Intro, tweenInfo, goal):Play()
 
-		local goal = {}
-		goal.TextTransparency = 0
+			local goal = {}
+			goal.TextTransparency = 0
 
-		local tweenInfo = TweenInfo.new(1.2)
+			local tweenInfo = TweenInfo.new(1.2)
 
-		local tween = TweenService:Create(Intro.TextLabel, tweenInfo, goal):Play()
-		wait(1.2)
-		Spy:Destroy()
+			local tween = TweenService:Create(Intro.TextLabel, tweenInfo, goal):Play()
+			wait(2)
+			Spy:Destroy()
 
-	end)
+		end)
 
 
 
