@@ -625,59 +625,58 @@ end
 	end
 
 
-	local TweenService = game:GetService("TweenService")
-	local Players = game:GetService("Players")
 
-	local Menu = Menu
-	local Header = header
-	local Main = Frame
-	local Intro = Thing
+		local TweenService = game:GetService("TweenService")
+		local Players = game:GetService("Players")
 
+		local Menu = Menu
+		local Header = header
+		local Main = Frame
+		local Intro = Thing
 
-	PlaySound(3482374640)
+		Menu.Visible = false
+		Header.Visible = false
 
-	Menu.Visible = false
-	Header.Visible = false
+		Main.Size = UDim2.new(0,0,0,0)
 
-	Main.Size = UDim2.new(0,0,0,0)
+		local goal = {}
+		goal.Size = UDim2.new(0, 517,0, 249)
 
-	local goal = {}
-	goal.Size = UDim2.new(0, 517,0, 249)
+		local tweenInfo = TweenInfo.new(1.2)
 
-	local tweenInfo = TweenInfo.new(1.2)
-
-	local tween = TweenService:Create(Main, tweenInfo, goal):Play()
+		local tween = TweenService:Create(Main, tweenInfo, goal):Play()
 	wait(tweenInfo.Time)
+	PlaySound(1064195734)
+Thing.Visible = true
+		local goal = {}
+		goal.BackgroundTransparency = 0
 
-	local goal = {}
-	goal.BackgroundTransparency = 0
+		local tween = TweenService:Create(Intro, tweenInfo, goal):Play()
 
-	local tween = TweenService:Create(Intro, tweenInfo, goal):Play()
-
-	local goal = {}
-	goal.TextTransparency = 0
-
-
-	TweenService:Create(Intro.TextLabel, tweenInfo, goal):Play()
-
-	wait(tweenInfo.Time)
-	wait(1)
-	Menu.Visible = true
-	Header.Visible = true
+		local goal = {}
+		goal.TextTransparency = 0
 
 
-	local goal = {}
-	goal.BackgroundTransparency = 1
+		TweenService:Create(TextLabel_4, tweenInfo, goal):Play()
 
-	TweenService:Create(Intro, tweenInfo, goal):Play()
-
-	local goal = {}
-	goal.TextTransparency = 1
-
-	TweenService:Create(Intro.TextLabel, tweenInfo, goal):Play()
+		wait(tweenInfo.Time)
+		wait(1)
+		Menu.Visible = true
+		Header.Visible = true
 
 
-	Thing.Visible = true
+		local goal = {}
+		goal.BackgroundTransparency = 1
+
+		TweenService:Create(Intro, tweenInfo, goal):Play()
+
+		local goal = {}
+		goal.TextTransparency = 1
+
+		TweenService:Create(Intro.TextLabel, tweenInfo, goal):Play()
+
+
+		Thing.Visible = true
 
 	local function PYVDT_fake_script() -- ScreenGui.Dragify 
 
@@ -733,17 +732,17 @@ end
 	Button.Visible = false
 
 	TextBox.Changed:Connect(function()
-		for Index, Item in pairs(ae:GetChildren()) do
-			if Item:IsA("GuiButton") then
-				local Text = Item.Name:lower()
-				if Text:match(SearchBar.Text:lower()) or SearchBar.Text == "" or Item == SearchBar then
-					Item.Visible = true
-				else
-					Item.Visible = false
+			for Index, Item in pairs(ae:GetChildren()) do
+				if Item:IsA("GuiButton") then
+					local Text = Item.Name:lower()
+					if Text:match(TextBox.Text:lower()) or TextBox.Text == "" or Item == TextBox then
+						Item.Visible = true
+					else
+						Item.Visible = false
+					end
 				end
 			end
-		end
-	end)
+		end)
 
 	Animation.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Tescalus/Evolution-Hub/main/Animation%20ID%20Player.lua"))()	
