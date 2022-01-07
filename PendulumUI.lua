@@ -3,7 +3,7 @@
 
 return {
 CreateGui = function(GuiName)
-	local Spy = Instance.new("ScreenGui")
+local Spy = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local hellomario = Instance.new("UICorner")
 local header = Instance.new("Frame")
@@ -84,12 +84,12 @@ local UICorner_18 = Instance.new("UICorner")
 
 --Properties:
 
-PendulumHubGUI.Name = "Pendulum Hub GUI"
-PendulumHubGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-PendulumHubGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-PendulumHubGUI.ResetOnSpawn = false
+Spy.Name = GuiName
+Spy.Parent = game:GetService("CoreGui")
+Spy.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Spy.ResetOnSpawn = false
 
-Frame.Parent = PendulumHubGUI
+Frame.Parent = Spy
 Frame.BackgroundColor3 = Color3.fromRGB(26, 32, 58)
 Frame.ClipsDescendants = true
 Frame.Position = UDim2.new(0.24680081, 0, 0.209177569, 0)
