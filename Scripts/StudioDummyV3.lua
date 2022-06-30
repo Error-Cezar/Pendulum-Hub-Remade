@@ -977,17 +977,41 @@ end)
 for i = 1, 2 do
 	run.RenderStepped:Wait()
 end
-local addons,showname = "","someone lol"
+local addons,showname = "","[[REDACTED]]"
 if isceat_ceat then
 	addons,showname = " the creator wow!!!","Vulnerali"
 end
-addtochat("studio dummy v3","studio dummy v3 - by Vulnerali")
-addtochat("studio dummy v3","current user is '"..showname.."'"..addons)
-addtochat("credit", "converted by padero for pendulum hub / coffeeware")
+addtochat("Studio Dummy V3","Studio Dummy V3 - by Vulnerali")
+addtochat("Studio Dummy V3","current user is '"..showname.."'"..addons)
+
+for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+	v.Chatted:Connect(function(message, recipient)
+		print(recipient)
+		local Nam = v.Name
+		if v.Name == game:GetService("Players").LocalPlayer.Name then Nam = "Studio Dummy V3" end
+		addtochat(Nam, message)
+	end)
+end
+
+game:GetService("Players").PlayerAdded:Connect(function(v)
+	v.Chatted:Connect(function(message, recipient)
+		print(recipient)
+		local Nam = v.Name
+		if v.Name == game:GetService("Players").LocalPlayer.Name then Nam = "Studio Dummy V3" end
+		addtochat(Nam, message)
+	end)
+end)
+
+game:GetService("Players")
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "studio dummy v3",
 	Text = "created by Vulnerali",
 })
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "Credits",
+	Text = "Converted by padero and edited by Error-Cezar | Coffeeware",
+})
+
 game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 	run:UnbindFromRenderStep(username..userid.."partmaintain")
 	debris:AddItem(chat.Parent,0)
@@ -1075,6 +1099,10 @@ hat2:BreakJoints()
 local weld1 = Instance.new('Weld',hat2)
 weld1.Part1 = hat2
 weld1.Part0 = gun
+gun.Transparency = 1
+for _,v in pairs(gun:GetChildren()) do
+	v:Destroy()
+end
 weld1.C0 = CFrame.new(0.4,0,0)*CFrame.Angles(0,math.rad(180),0)
 
 local hat3 = _chr['Noob MonitorAccessory'].Handle
@@ -1083,4 +1111,8 @@ _chr[game:GetService("Players").LocalPlayer.Name]["Noob MonitorAccessory"].Handl
 local weld2 = Instance.new('Weld',hat3)
 weld2.Part1 = hat3
 weld2.Part0 = chat
+local chats = chat:WaitForChild("chat")
+chats.Parent = hat3
+chats.chatbox.BackgroundTransparency = 1
+chat.Transparency = 1
 weld2.C0 = CFrame.new(0,0,0)*CFrame.Angles(0,0,0)
