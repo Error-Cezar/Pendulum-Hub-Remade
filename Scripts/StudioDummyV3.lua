@@ -1070,18 +1070,18 @@ weld.Part1 = hat
 weld.Part0 = gun
 weld.C0 = CFrame.new(0.4,0,0)*CFrame.Angles(0,math.rad(180),0)
 
-local hat = _chr['SnowQueenNecklace'].Handle
+local hat2 = _chr['SnowQueenNecklace'].Handle
 hat:BreakJoints()
-local weld = Instance.new('Weld',hat)
-weld.Part1 = hat
-weld.Part0 = gun
-weld.C0 = CFrame.new(0.4,0,0)*CFrame.Angles(0,math.rad(180),0)
+local weld1 = Instance.new('Weld',hat2)
+weld1.Part1 = hat2
+weld1.Part0 = gun
+weld1.C0 = CFrame.new(0.4,0,0)*CFrame.Angles(0,math.rad(180),0)
 
-local hat2 = _chr['Noob MonitorAccessory'].Handle
-hat2:BreakJoints()
-hat2.SpecialMesh:Destroy()
-local weld2 = Instance.new('Weld',hat2)
-weld2.Part1 = hat2
+local hat3 = _chr['Noob MonitorAccessory'].Handle
+hat3:BreakJoints()
+_chr[game:GetService("Players").LocalPlayer.Name][hat2.Name].SpecialMesh:Destroy()
+local weld2 = Instance.new('Weld',hat3)
+weld2.Part1 = hat3
 weld2.Part0 = chat
 weld2.C0 = CFrame.new(0,0,0)*CFrame.Angles(0,0,0)
 
