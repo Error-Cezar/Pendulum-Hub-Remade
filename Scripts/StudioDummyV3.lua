@@ -1084,3 +1084,9 @@ local weld2 = Instance.new('Weld',hat2)
 weld2.Part1 = hat2
 weld2.Part0 = chat
 weld2.C0 = CFrame.new(0,0,0)*CFrame.Angles(0,0,0)
+
+for _,v in pairs(_chr:GetChildren()) do
+    if v:IsA("BasePart") then
+		v.CanCollide = false
+    end
+end
