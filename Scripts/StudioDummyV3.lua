@@ -1079,7 +1079,7 @@ weld1.C0 = CFrame.new(0.4,0,0)*CFrame.Angles(0,math.rad(180),0)
 
 local hat3 = _chr['Noob MonitorAccessory'].Handle
 hat3:BreakJoints()
-_chr[game:GetService("Players").LocalPlayer.Name][hat2.Name].SpecialMesh:Destroy()
+_chr[game:GetService("Players").LocalPlayer.Name]["Noob MonitorAccessory"].Handle.SpecialMesh:Destroy()
 local weld2 = Instance.new('Weld',hat3)
 weld2.Part1 = hat3
 weld2.Part0 = chat
