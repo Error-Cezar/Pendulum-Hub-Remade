@@ -1071,7 +1071,7 @@ weld.Part0 = gun
 weld.C0 = CFrame.new(0.4,0,0)*CFrame.Angles(0,math.rad(180),0)
 
 local hat2 = _chr['SnowQueenNecklace'].Handle
-hat:BreakJoints()
+hat2:BreakJoints()
 local weld1 = Instance.new('Weld',hat2)
 weld1.Part1 = hat2
 weld1.Part0 = gun
