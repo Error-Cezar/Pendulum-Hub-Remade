@@ -1,4 +1,32 @@
-getgenv()._reanimate()
+local Hat = true
+
+local Has = false
+
+game.Players.LocalPlayer.Chatted:Connect(function(message, recipient)
+	print(message, recipent)
+end)
+
+function Chat(Message: string) if not Message then warn("Message required.") return end game:GetService("Players"):Chat(Message) end
+
+function AutoHats()
+	local Hats = {
+	5136154487,
+	187998056,
+	5699732847,
+	4504231783
+	}
+local ok = ""
+	for n,v in pairs(Hats) do
+       if n == 1 then
+	      ok = tostring(v)
+        else
+          ok = ok..","..tostring(v)
+        end
+		Chat(":hat me "..v)
+		wait()
+	end
+	Chat("-gh "..ok)
+end
 
 function GetID(HatName: string)
 
@@ -17,12 +45,16 @@ function GetID(HatName: string)
 end
 
 function HasHats()
-	local Missing = {}
+	local Missing = nil
     for _,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
 		if v:IsA("Accessory") then
+		
+Has = true
 			if v.Name == 'Meshes/archangelrifleAccessory' or v.Name == 'SnowQueenNecklace' or v.Name == 'Pixel Rainbow Wings' then
 				return true
 			else
+				Hat = false
+				Missing = {}
                 table.insert(Missing, GetID(v.Name))
 			end
         end
@@ -31,11 +63,21 @@ function HasHats()
 end
 
 local Needed = HasHats()
-if Needed ~= nil and typeof(Needed) == "table" then
+print(Needed)
+if (Needed ~= nil and typeof(Needed) == "table") or Has == false then
 	game:GetService("StarterGui"):SetCore("SendNotification",{
 		Title = "Missing hats",
 		Text = "Check the F9 console.",
 	})
+	if game.PlaceId == 9307193325 or game.PlaceId == 5100950559 or game.PlaceId == 4522347649 or game.PlaceId == 6034569469 then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Known game detected",
+			Text = "Attemping AutoHats",
+		})
+		AutoHats()
+		Hat = true
+	end
+	if Hat == false then
 	warn("---------------------------------------------")
 	warn("You need the hats bellow the run this script.")
 	for _,v in pairs(Needed) do
@@ -43,7 +85,14 @@ if Needed ~= nil and typeof(Needed) == "table" then
 	end
 	warn("---------------------------------------------")
 	return
+    end
 end	
+
+task.wait(1)
+
+--[[ ----------------------------------------------------------------------- ]]--
+
+getgenv()._reanimate()
 
 local folder = game:GetObjects('rbxassetid://10012397982')[1]
 folder.Parent = game.Players.LocalPlayer.Character
@@ -616,7 +665,7 @@ function attacks:pew(pos)
 	if hat4 then
 		hat4.Weld.Part0 = gun
 		wait(0.1)
-		hat4.Weld.Part0 = _chr["HumanoidRootPart"]
+		hat4.Weld.Part0 = _chr["Torso"]
 	end
 end
 
@@ -1202,7 +1251,7 @@ if _chr:FindFirstChild("RockAccessory") then
 	_chr[game:GetService("Players").LocalPlayer.Name]["RockAccessory"].Handle.SpecialMesh:Destroy()
 	local weld3 = Instance.new('Weld',hat4)
     weld3.Part1 = hat4
-    weld3.Part0 = _chr["HumanoidRootPart"]
+    weld3.Part0 = _chr["Torso"]
 	weld3.C0 = CFrame.new(0,0,0)*CFrame.Angles(0,0,0)
 end
 
