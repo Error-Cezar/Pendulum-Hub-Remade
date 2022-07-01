@@ -1,5 +1,50 @@
 getgenv()._reanimate()
 
+function GetID(HatName: string)
+
+	local IDs = {
+       ["Meshes/archangelrifleAccessory"] =  5136154487,
+	   ['SnowQueenNecklace'] = 150381051,
+	   ['Pixel Rainbow Wings'] = 5699732847
+	}
+
+	if IDs[HatName] then
+		return IDs[HatName]
+	end
+
+	return nil
+	
+end
+
+function HasHats()
+	local Missing = {}
+    for _,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+		if v:IsA("Accessory") then
+			if v.Name == 'Meshes/archangelrifleAccessory' or v.Name == 'SnowQueenNecklace' or v.Name == 'Pixel Rainbow Wings' then
+				return true
+			else
+                table.insert(Missing, GetID(v.Name))
+			end
+        end
+    end
+	return Missing
+end
+
+local Needed = HasHats()
+if Needed ~= nil and typeof(Needed) == "table" then
+	game:GetService("StarterGui"):SetCore("SendNotification",{
+		Title = "Missing hats",
+		Text = "Check the F9 console.",
+	})
+	warn("---------------------------------------------")
+	warn("You need the hats bellow the run this script.")
+	for _,v in pairs(Needed) do
+		warn("https://roblox.com/library/"..tostring(v).."/StudioDummyV3Hat")
+	end
+	warn("---------------------------------------------")
+	return
+end	
+
 local folder = game:GetObjects('rbxassetid://10012397982')[1]
 folder.Parent = game.Players.LocalPlayer.Character
 
@@ -433,8 +478,10 @@ function attacks:hitbox(radius,pos)
 		attacks:loldiepart(v)
 	end]]
 end
+
 function attacks:pew(pos)
 	attack,ws = true,0.05
+	local a = getgenv().RealRig:FindFirstChild(tostring(getgenv().Fling))
 	for i = 1, 3, 0.15 do
 		swait()
 		laoffset = laoffset:Lerp(lac0*cn(0.0649986267,0,0.240997314)*euler(rad(-7.5),rad(15),0),animspeed)
@@ -446,6 +493,13 @@ function attacks:pew(pos)
 		gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed)
 	end
 	local start = (gun.CFrame * cn(3.43700027,0.504000008,0.00199890137)).p
+	local _chr = game.Players.LocalPlayer.Character
+	local hat4 = nil
+	if _chr:FindFirstChild("RockAccessory") then
+		hat4 = _chr['RockAccessory'].Handle  
+	end
+
+
 	debris:AddItem(create("Sound",{
 		Parent = gun,
 		SoundId = "rbxassetid://3723700663",
@@ -453,17 +507,21 @@ function attacks:pew(pos)
 		Volume = 3,
 		PlayOnRemove = true
 	}),0)
+
+
 	local bruurubu = create("Part",{
 		Parent = workspace,
 		Anchored = true,
 		CanCollide = false,
 		Material = Enum.Material.Neon,
+		Transparency = 1,
 		Size = v3(1.5,1.5,1.5),
 		CFrame = cn(start) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
 	})
 	table.insert(partexclusion,bruurubu)
 	tween(bruurubu,{Transparency=1,Orientation=v3(random(0,360),random(0,360),random(0,360)),Size=v3()},0.2,Enum.EasingDirection.In)
 	debris:AddItem(bruurubu,0.2)
+
 	for i = 1, 5 do
 		local function dosomethingidk()
 			raycastparams.FilterDescendantsInstances = partexclusion
@@ -484,8 +542,10 @@ function attacks:pew(pos)
 			Size = v3(0.5,0.5,length),
 			Material = Enum.Material.Neon,
 			Position = start,
+			Transparency = 1,
 			CFrame = cn(start,hitpos)
 		})
+	
 		table.insert(partexclusion,s)
 		s.CFrame = s.CFrame * cn(0,0,-length/2)
 		attacks:hitbox(2,hitpos)
@@ -497,6 +557,7 @@ function attacks:pew(pos)
 			CanCollide = false,
 			Material = Enum.Material.Neon,
 			Size = v3(1.5,1.5,1.5),
+			Transparency = 1,
 			CFrame = cn(hitpos) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
 		})
 		table.insert(partexclusion,hiteffectidk)
@@ -509,8 +570,14 @@ function attacks:pew(pos)
 			CanCollide = false,
 			Size = v3(0.1,0.1,0.1),
 			Material = Enum.Material.Neon,
+			Transparency = 1,
 			CFrame = cn(start) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
 		})
+		if hat4 then
+			print(hat4)
+			hat4.Weld.Part0 = hiteffectidk
+			print(hat4.CFrame)
+		end
 		table.insert(partexclusion,shock)
 		tween(shock,{Size=v3(0.1,random(5,7),0.1),Transparency=1},random(5,15)/30,Enum.EasingDirection.Out)
 		debris:AddItem(shock,0.5)
@@ -546,7 +613,13 @@ function attacks:pew(pos)
 		gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed)
 	end
 	attack,ws = false,0.2
+	if hat4 then
+		hat4.Weld.Part0 = gun
+		wait(0.1)
+		hat4.Weld.Part0 = _chr["HumanoidRootPart"]
+	end
 end
+
 function attacks:ouch(pos)
 	attack,ws = true,0.05
 	local a = getgenv().RealRig:FindFirstChild(tostring(getgenv().Fling))
@@ -1111,9 +1184,9 @@ for _,v in pairs(gun:GetChildren()) do
 end
 weld1.C0 = CFrame.new(0.4,0,0)*CFrame.Angles(0,math.rad(180),0)
 
-local hat3 = _chr['Noob MonitorAccessory'].Handle
+local hat3 = _chr['Pixel Rainbow Wings'].Handle
 hat3:BreakJoints()
-_chr[game:GetService("Players").LocalPlayer.Name]["Noob MonitorAccessory"].Handle.SpecialMesh:Destroy()
+_chr[game:GetService("Players").LocalPlayer.Name]["Pixel Rainbow Wings"].Handle.SpecialMesh:Destroy()
 local weld2 = Instance.new('Weld',hat3)
 weld2.Part1 = hat3
 weld2.Part0 = chat
@@ -1122,3 +1195,15 @@ chats.Parent = hat3
 chats.chatbox.BackgroundTransparency = 1
 chat.Transparency = 1
 weld2.C0 = CFrame.new(0,0,0)*CFrame.Angles(0,0,0)
+
+if _chr:FindFirstChild("RockAccessory") then
+	local hat4 = _chr['RockAccessory'].Handle 
+	hat4:BreakJoints() 
+	_chr[game:GetService("Players").LocalPlayer.Name]["RockAccessory"].Handle.SpecialMesh:Destroy()
+	local weld3 = Instance.new('Weld',hat4)
+    weld3.Part1 = hat4
+    weld3.Part0 = _chr["HumanoidRootPart"]
+	weld3.C0 = CFrame.new(0,0,0)*CFrame.Angles(0,0,0)
+end
+
+_chr[game:GetService("Players").LocalPlayer.Name].Head.Mesh:Destroy()
