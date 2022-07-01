@@ -549,8 +549,12 @@ function attacks:pew(pos)
 end
 function attacks:ouch(pos)
 	attack,ws = true,0.05
+	local a = getgenv().RealRig:FindFirstChild(tostring(getgenv().Fling))
+	getgenv().FlingMove = true
+	a.Position = gun.Position
 	for i = 1, 3, 0.2 do
 		swait()
+		a.Position = gun.Position
 		laoffset = laoffset:Lerp(lac0*cn(0.0649986267,0,0.240997314)*euler(rad(-7.5),rad(15),0),animspeed)
 		raoffset = raoffset:Lerp(rac0*cn(0.301998138,0.25999999,-0.476997375)*euler(rad(75),0,rad(45)),animspeed)
 		lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
@@ -569,6 +573,7 @@ function attacks:ouch(pos)
 	}),0)
 	for i = 1, 2, 0.15 do
 		swait()
+		a.Position = gun.Position
 		laoffset = laoffset:Lerp(lac0*cn(0.0649986267,0,0.240997314)*euler(rad(-7.5),rad(15),0),animspeed*2)
 		raoffset = raoffset:Lerp(rac0*cn(-0.459999084,0.112999916,-1.02799988)*euler(rad(75),0,rad(-30)),animspeed*2)
 		lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed*2)
@@ -578,6 +583,7 @@ function attacks:ouch(pos)
 		gunoffset = gunoffset:Lerp(cn(0.116001129,-0.170000076,-0.424999237)*euler(rad(0.06),rad(0.98),rad(75.06)),animspeed*2)
 	end
 	attack,ws = false,0.2
+	getgenv().FlingMove = false
 end
 function attacks:tp(pos)
 	local oldpos = poscframe.p
