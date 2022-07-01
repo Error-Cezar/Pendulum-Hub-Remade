@@ -16,7 +16,7 @@ return function()
 	local SplitTorsoHats = {
 		{"19999406",CFrame.Angles(math.rad(90),0,0)},
 		{"26400954",CFrame.Angles(math.rad(90),0,0)},
-		{"81504106",CFrame.new(0,0,0.6)*CFrame.Angles(math.rad(90),0,0)},
+		{"81504106",CFrame.Angles(math.rad(90),0,0)},
 		{"20367587",CFrame.Angles(math.rad(90),0,0)},
 		{"15730704",CFrame.Angles(math.rad(90),0,0)},
 		{"6858317867",CFrame.Angles(math.rad(90),0,0)},
@@ -68,7 +68,7 @@ return function()
 		Global.MovementVelocity = false
 		Global.ArtificialHeartBeat = true
 		Global.EnableSpin = true
-        Global.FlingMove = false
+		Global.FlingMove = false
 	end
 	
 	do -- idk what the fuck this code is so im just gonna include it
