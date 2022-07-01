@@ -1256,3 +1256,4 @@ if _chr:FindFirstChild("RockAccessory") then
 end
 
 _chr[game:GetService("Players").LocalPlayer.Name].Head.Mesh:Destroy()
+_chr.Head.Face:Destroy()
