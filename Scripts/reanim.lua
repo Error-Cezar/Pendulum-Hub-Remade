@@ -59,11 +59,11 @@ return function()
 	end
 	
 	do -- Settings
-		Global.Fling = Character.Humanoid.RigType == Enum.HumanoidRigType.R15 and 'LowerTorso' or Global.Reanimation == "PermaDeath" and 'HumanoidRootPart' or 'Right Arm'
+	        Global.Fling = Character.Humanoid.RigType == Enum.HumanoidRigType.R15 and 'LowerTorso' or Global.Reanimation == "PermaDeath" and 'HumanoidRootPart' or 'Right Arm'
 		Global.ShowReal = true
-		Global.HatCollision = true
 		Global.GodMode = Global.Reanimation == 'PermaDeath' and true or false
 		Global.Velocity = -35
+		Global.Collisions = true
 		Global.AntiSleep = true
 		Global.MovementVelocity = false
 		Global.ArtificialHeartBeat = true
