@@ -3,46 +3,19 @@ local Hat = true
 local Has = false
 
 game.Players.LocalPlayer.Chatted:Connect(function(message, recipient)
-	print(message, recipent)
+	--print(message, recipent)
 end)
 
-function Chat(Message: string) if not Message then warn("Message required.") return end game:GetService("Players"):Chat(Message) end
+function Chat(msg)
+    game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:CaptureFocus()
+    game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar.Text = msg
+    game:GetService("Players"):chat(msg)
+    game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar.Text = ""
+    game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:ReleaseFocus()
+    end
 
-function AutoHats()
-	local Hats = {
-	5136154487,
-	187998056,
-	5699732847,
-	4504231783
-	}
-local ok = ""
-	for n,v in pairs(Hats) do
-       if n == 1 then
-	      ok = tostring(v)
-        else
-          ok = ok..","..tostring(v)
-        end
-		Chat(":hat me "..v)
-		wait()
-	end
-	Chat("-gh "..ok)
-end
+function Msg(Message: string) if not Message then warn("Message required.") return end Chat(Message) end
 
-function GetID(HatName: string)
-
-	local IDs = {
-       ["Meshes/archangelrifleAccessory"] =  5136154487,
-	   ['SnowQueenNecklace'] = 150381051,
-	   ['Pixel Rainbow Wings'] = 5699732847
-	}
-
-	if IDs[HatName] then
-		return IDs[HatName]
-	end
-
-	return nil
-	
-end
 
 function HasHats()
 	local Missing = nil
@@ -60,6 +33,44 @@ Has = true
         end
     end
 	return Missing
+end
+
+function AutoHats()
+	local Hats = {
+	5136154487,
+	187998056,
+	5699732847,
+	4504231783
+	}
+local ok = ""
+	for n,v in pairs(Hats) do
+       if n == 1 then
+	      ok = tostring(v)
+        else
+          ok = ok..","..tostring(v)
+        end
+		Msg(":hat me "..v)
+		wait()
+	end
+	Msg("-gh "..ok)
+	wait(1)
+	if not HasHats() then AutoHat() else return end
+end
+
+function GetID(HatName: string)
+
+	local IDs = {
+       ["Meshes/archangelrifleAccessory"] =  5136154487,
+	   ['SnowQueenNecklace'] = 150381051,
+	   ['Pixel Rainbow Wings'] = 5699732847
+	}
+
+	if IDs[HatName] then
+		return IDs[HatName]
+	end
+
+	return nil
+	
 end
 
 local Needed = HasHats()
