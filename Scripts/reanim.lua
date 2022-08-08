@@ -66,7 +66,7 @@ return function()
 		Global.Collisions = true
 		Global.AntiSleep = true
 		Global.MovementVelocity = false
-		Global.ArtificialHeartBeat = true
+		Global.ArtificialHeartBeat = {"PreRender","PreAnimation","Stepped","Heartbeat"}
 		Global.EnableSpin = true
 		Global.FlingMove = false
 	end
